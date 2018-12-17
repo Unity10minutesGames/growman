@@ -6,11 +6,6 @@ public class Snowflake : MonoBehaviour {
     private const string TAGCOLLIDER = "Collider";
     private const string TAGPLAYER = "Player";
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == TAGCOLLIDER)

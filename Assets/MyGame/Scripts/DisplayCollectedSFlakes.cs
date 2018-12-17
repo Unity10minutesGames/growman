@@ -10,13 +10,6 @@ public class DisplayCollectedSFlakes : MonoBehaviour {
     // Use this for initialization
     void Start () {
         collectedSnowflakeText = GetComponent<TextMeshProUGUI>();
-        Debug.Log(collectedSnowflakeText == null);
-        //collectedSnowflakeText.text = GameSessionSingleton.instance.collectedSnowflakes.ToString();
         collectedSnowflakeText.text = GameSessionSingleton.instance.CalcPercent().ToString() + "kg ";
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

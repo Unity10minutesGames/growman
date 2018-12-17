@@ -26,8 +26,7 @@ public class ResizeSnownman : MonoBehaviour {
         {
            float factor = GameSessionSingleton.instance.CalcPercent()/100;
            spriteRenderer.transform.localScale = new Vector3(scaleX*factor, scaleY*factor, 0f);
-           Debug.Log("Faktor "+factor);
-            resize = false;
+           resize = false;
         }
 	}
 }

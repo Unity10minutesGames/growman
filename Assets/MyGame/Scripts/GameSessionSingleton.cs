@@ -29,8 +29,6 @@ public class GameSessionSingleton : MonoBehaviour {
         }
 
         return Mathf.Round(100 * collectedSnowflakes / sumCollectableSnowflakes);
-
-       
     }
 
 
@@ -46,8 +44,6 @@ public class GameSessionSingleton : MonoBehaviour {
         sceneLoader = GetComponent<SceneLoader>();
         countdown = GetComponent<Countdown>();
         isCountdownActivated = false;
-
-        collectedSnowflakes = 0;
 	}
 	
 	void Update () {
@@ -55,22 +51,19 @@ public class GameSessionSingleton : MonoBehaviour {
         if (sceneLoader.GetCurrenScene().name == SceneLoader.SCENEGROWMANMAIN)
         {
             StartCountdown();
-            LoadGamOverScene();
+            LoadGameOverScene();
         }
 
         else if (sceneLoader.GetCurrenScene().name == SceneLoader.SCENEWELCOME)
         {
             collectedSnowflakes = 0;
             missedSnowflakes = 0;
-           // Debug.Log("In Game Over Scene");
-           // Debug.Log("missed flakes "+ missedSnowflakes);
-           // Debug.Log("flakes " + scoreSnowflakes);
         }
 
         
 	}
 
-    private void LoadGamOverScene()
+    private void LoadGameOverScene()
     {
         if (countdown.timeRemaining == 0)
         {

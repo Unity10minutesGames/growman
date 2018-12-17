@@ -11,24 +11,24 @@ public class SceneLoader : MonoBehaviour {
 
     private void OnEnable()
     {
-        Debug.Log("enable sceneloader");
+        //Debug.Log("enable sceneloader");
     }
 
     public void LoadMainGame()
     {
-        Debug.Log("Load main");
+        //Debug.Log("Load main");
         SceneManager.LoadScene(SCENEGROWMANMAIN);
     }
 
     public void LoadWelcome()
     {
-        Debug.Log("Load welcome");
+        //Debug.Log("Load welcome");
         SceneManager.LoadScene(SCENEWELCOME);
     }
 
     public void LoadGameOver()
     {
-        Debug.Log("load gameover");
+        //Debug.Log("load gameover");
         SceneManager.LoadScene(SCENEGAMEOVER);
     }
 

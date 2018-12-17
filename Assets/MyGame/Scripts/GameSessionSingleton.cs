@@ -11,6 +11,27 @@ public class GameSessionSingleton : MonoBehaviour {
     public Countdown countdown;
     public SceneLoader sceneLoader;
     public bool isCountdownActivated;
+    
+    public int collectedSnowflakes;
+    public int missedSnowflakes;
+
+    private int CalcSpawnedSnowflakes()
+    {
+        return collectedSnowflakes + missedSnowflakes;
+    }
+
+    public float CalcPercent()
+    {
+        int sumCollectableSnowflakes = collectedSnowflakes + missedSnowflakes;
+        if (sumCollectableSnowflakes == 0)
+        {
+            return Mathf.Round(100 * collectedSnowflakes / 20);
+        }
+
+        return Mathf.Round(100 * collectedSnowflakes / sumCollectableSnowflakes);
+
+       
+    }
 
 
     private void Awake()
@@ -26,30 +47,54 @@ public class GameSessionSingleton : MonoBehaviour {
         countdown = GetComponent<Countdown>();
         isCountdownActivated = false;
 
-       Debug.Log("init sigelton");
+        collectedSnowflakes = 0;
 	}
 	
 	void Update () {
 
         if (sceneLoader.GetCurrenScene().name == SceneLoader.SCENEGROWMANMAIN)
         {
-            if (!isCountdownActivated)
-            {
-                isCountdownActivated = true;
-                countdown.StartCountDown();
-            }
-
-            if (countdown.timeRemaining == 0)
-            {
-                isCountdownActivated = false;
-                sceneLoader.LoadGameOver();
-            }
-
-            if (isCountdownActivated)
-            {
-                Debug.Log(countdown.timeRemaining);
-            }
-            
+            StartCountdown();
+            LoadGamOverScene();
         }
+
+        else if (sceneLoader.GetCurrenScene().name == SceneLoader.SCENEWELCOME)
+        {
+            collectedSnowflakes = 0;
+            missedSnowflakes = 0;
+           // Debug.Log("In Game Over Scene");
+           // Debug.Log("missed flakes "+ missedSnowflakes);
+           // Debug.Log("flakes " + scoreSnowflakes);
+        }
+
+        
 	}
+
+    private void LoadGamOverScene()
+    {
+        if (countdown.timeRemaining == 0)
+        {
+            isCountdownActivated = false;
+            sceneLoader.LoadGameOver();
+        }
+    }
+
+    private void StartCountdown()
+    {
+        if (!isCountdownActivated)
+        {
+            isCountdownActivated = true;
+            countdown.StartCountDown();
+        }
+    }
+
+    public void addMissedSnowflake()
+    {
+        missedSnowflakes++;
+    }
+
+    public void addCollectedSnowflake()
+    {
+        collectedSnowflakes++;
+    }
 }

@@ -8,7 +8,7 @@ public class Countdown : MonoBehaviour {
 
     public void StartCountDown()
     {
-        Debug.Log("start countdown");
+        //Debug.Log("start countdown");
         if (!isCountingDown)
         {
             isCountingDown = true;
@@ -19,17 +19,17 @@ public class Countdown : MonoBehaviour {
 
     private void CountingDown()
     {
-        Debug.Log("In counting down");
+        //Debug.Log("In counting down");
         timeRemaining--;
         if (timeRemaining > 0)
         {
-            Debug.Log(timeRemaining + " " + isCountingDown );
+            //Debug.Log(timeRemaining + " " + isCountingDown );
             Invoke("CountingDown", 1f);
         }
         else
         {
             isCountingDown = false;
-            Debug.Log(timeRemaining + " " + isCountingDown);
+            //Debug.Log(timeRemaining + " " + isCountingDown);
         }
     }
 

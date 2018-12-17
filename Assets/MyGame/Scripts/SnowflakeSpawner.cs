@@ -12,13 +12,16 @@ public class SnowflakeSpawner : MonoBehaviour {
 
     public int xMinLeft = -5;
     public int xMaxLeft = 5;
-    public int snowflakeMinSize = 4;
-    public int snowflakeMaxSize = 10;
+    public int snowflakeMinSize = 3;
+    public int snowflakeMaxSize = 7;
 
     public float snowflakeGravityMin = 0.1f;
     public float snowflakeGravityMax = 0.8f;
 
     public int yPos = 450;
+    public int snowflakeScore = 0;
+
+    private SpriteRenderer spriteRenderer;
 
     // Use this for initialization
     IEnumerator Start () {
@@ -33,14 +36,22 @@ public class SnowflakeSpawner : MonoBehaviour {
     private void SpawnSnowflake()
     {
         transform.position = new Vector3(Random.Range(xMinLeft, xMaxLeft), yPos, 0);
+
         float snowflakeSize = Random.Range(snowflakeMinSize, snowflakeMaxSize);
         snowflakePrefab.GetComponent<Transform>().localScale= new Vector3(snowflakeSize, snowflakeSize, 0);
-        Instantiate(snowflakePrefab, transform.position, transform.rotation);
+
+
+        Snowflake clone = (Snowflake)Instantiate(snowflakePrefab, transform.position, transform.rotation);
         
+        clone.GetComponent<SpriteRenderer>().sortingOrder = Random.Range(2,8);
+        if(clone.GetComponent<SpriteRenderer>().sortingOrder == 7)
+        {
+            clone.GetComponent<SpriteRenderer>().color = Color.blue;
+        }
+        clone.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-2,2), Random.Range(-10,-1));
+        
+
+        snowflakeScore++;
+
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

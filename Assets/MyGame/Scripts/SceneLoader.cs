@@ -5,25 +5,37 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour {
 
-    private const string SCENEWELCOME     = "Welcome";
-    private const string SCENEGAMEOVER    = "GameOver";
-    private const string SCENEGROWMANMAIN = "GrowmanMain";
+    public const string SCENEWELCOME     = "Welcome";
+    public const string SCENEGAMEOVER    = "GameOver";
+    public const string SCENEGROWMANMAIN = "GrowmanMain";
+
+    private void OnEnable()
+    {
+        Debug.Log("enable sceneloader");
+    }
 
     public void LoadMainGame()
     {
-        Debug.Log("in onclick main");
+        Debug.Log("Load main");
         SceneManager.LoadScene(SCENEGROWMANMAIN);
     }
 
     public void LoadWelcome()
     {
-        Debug.Log("in onclick welcome");
+        Debug.Log("Load welcome");
         SceneManager.LoadScene(SCENEWELCOME);
     }
 
     public void LoadGameOver()
     {
-        Debug.Log("in onclick gameover");
+        Debug.Log("load gameover");
         SceneManager.LoadScene(SCENEGAMEOVER);
     }
+
+    public Scene GetCurrenScene()
+    {
+        return SceneManager.GetActiveScene();
+    }
+
+    
 }

@@ -9,18 +9,21 @@ public class SceneLoader : MonoBehaviour {
     private const string SCENEGAMEOVER    = "GameOver";
     private const string SCENEGROWMANMAIN = "GrowmanMain";
 
-    void LoadMainGame()
+    public void LoadMainGame()
     {
+        Debug.Log("in onclick main");
         SceneManager.LoadScene(SCENEGROWMANMAIN);
     }
 
-    void LoadWelcome()
+    public void LoadWelcome()
     {
+        Debug.Log("in onclick welcome");
         SceneManager.LoadScene(SCENEWELCOME);
     }
 
-    void LoadGameOver()
+    public void LoadGameOver()
     {
+        Debug.Log("in onclick gameover");
         SceneManager.LoadScene(SCENEGAMEOVER);
     }
 }
